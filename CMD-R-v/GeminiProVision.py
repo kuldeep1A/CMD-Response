@@ -21,6 +21,8 @@ def response_generate(_question, _location):
             res = model.generate_content([_question, im], stream=True)
         res.resolve()
     except Exception as e:
-        print(f"{type(e).__name__}: {e.__dict__}")
+        print(f"{type(e).__name__}: {e}")
+        print("Please whatever image to analyze by CMD-Response. Put your image on './resource/images/' folder.")
+        return
 
     return res.text

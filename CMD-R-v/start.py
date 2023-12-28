@@ -7,8 +7,7 @@ versionModel = 1
 while not isStop:
     stop = "n"  # Default
     if isSeeV:
-        _versionModel = input("Which model to use, 1 for GeminiPro, 2 for GeminiProVision:..")
-
+        _versionModel = input("\n\nWhich model to use, 1 for GeminiPro, 2 for GeminiProVision: ")
         try:
             versionModel = int(_versionModel)
         except Exception as e:
@@ -28,15 +27,19 @@ while not isStop:
             isSeeV = False
 
     if versionModel == 1 and stop != "y":
-        _q = str(input("User: "))
+        _q = str(input("\n\nUser: "))
         ans = Pro.response_generate(_q)
-        print(f"Model: {ans}")
+        print(f"\nModel: {ans}")
+        print("-" * 91)
     elif versionModel == 2 and stop != "y":
-        print("ex: './resource/images/IMAGE_NAME.EXT'")
-        _l = str(input("Image Location(*): "))
+        print("\n\n'Write Proper full Image name.'")
+        _l = str(input("Image Name(*): "))
         _q = str(input("User: "))
-        ans = ProVision.response_generate(_question=_q, _location=_l)
-        print(f"Model: {ans}")
+        if _l:
+            _l = f"./resource/images/{_l}"
+            ans = ProVision.response_generate(_question=_q, _location=_l)
+            print(f"\nModel: {ans}")
+        print("-" * 91)
     else:
         print("Stop!")
         isStop = True
@@ -50,5 +53,7 @@ while not isStop:
                 isStop = True
             else:
                 isSeeV = True
+        elif closeModel != "n":
+            isStop = True
     else:
         isStop = True
