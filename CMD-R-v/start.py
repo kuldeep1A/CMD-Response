@@ -28,8 +28,9 @@ while not isStop:
 
     if versionModel == 1 and stop != "y":
         _q = str(input("\n\nUser: "))
-        ans = Pro.response_generate(_q)
-        print(f"\nModel: {ans}")
+        if _q:
+            ans = Pro.response_generate(_q)
+            print(f"\nModel: {ans}")
         print("-" * 91)
     elif versionModel == 2 and stop != "y":
         print("\n\n'Write Proper full Image name.'")
